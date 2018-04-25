@@ -1,0 +1,10 @@
+<% if signed_in? %>
+	<%= render current_user %>
+<% else %>
+	<p><h1> Welcome to Event Management Application </h1></p>
+	<p><h2> Please "Sign in / Sign up" to continue.</h2></p>
+
+	<%= link_to "Sign in", signin_path %> | 
+	<%= link_to "Sign up", signup_path %>
+<% end %> 
+

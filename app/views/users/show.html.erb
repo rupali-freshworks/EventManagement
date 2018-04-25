@@ -1,0 +1,31 @@
+<p>
+	<b>Name:</b>
+	<%= @user.name %>
+</p>
+
+<p>
+	<b>Email:</b>
+	<%= @user.email %>
+</p>
+
+<td>
+	<% if current_user.admin? %>
+		<%= link_to "Delete", @user, method: :delete, data: {confirm: "Are you sure?"} %>
+	<% end %>
+</td>
+
+<p>
+	<% if @user.events.any? %>
+	<h3>Events(<%= @user.events.count %>)</h3>
+	
+		<% @user.events.each do |e| %>
+			<%= link_to e.name, event_path(e) %><br />
+		<% end %>
+	
+	<% end %>
+</p>
+
+<% if current_user?(@user) %>
+	<p><%= link_to "Create new event", new_event_path %> </p>
+<% end %> 
+<p><%= link_to "See all users", users_path %><p>

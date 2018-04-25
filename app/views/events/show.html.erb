@@ -1,0 +1,20 @@
+<p><b>Title : </b><%= @event.name %></p>
+<p><b>Description : </b><%= @event.description %></p>
+<p><b>Starts At : </b><%= @event.starts_at.strftime("%m/%d/%Y %I:%M %p") %></p>
+<p><b>Ends At : </b><%= @event.ends_at.strftime("%m/%d/%Y %I:%M %p") %></p>
+
+<% if current_user?(@event.user) %>
+<tr>
+	<td>
+		<%= link_to "Edit", edit_event_path(@event) %>
+	</td>
+	<td>
+	<%= link_to "Delete", @event, method: :delete, data: {confirm: "Are you sure?"} %></td>
+</tr>
+<% else %>
+<tr>
+	<td>
+		<%= render 'subscribe' %>
+	</td>
+</tr>
+<%end%>
